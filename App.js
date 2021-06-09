@@ -30,30 +30,12 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { TestScheduler } from '@jest/core';
 
-var styles = require('./components/LoginStyle.js');
 
+import HomeScreen from './screens/Home/Index'
 
 const App: () => React$Node = () => {
   return (
-    <View style={styles.background}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Sempre a Horas</Text>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Username:</Text>
-          <TextInput style={styles.inputMargin}></TextInput>
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Password:</Text>
-          <TextInput style={styles.inputMargin}></TextInput>
-        </View>
-        <View style={styles.button}>
-          <Text>Se não tem conta </Text>
-          <TouchableOpacity>
-            <Text style={styles.registo}>registe-se</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
+    <HomeScreen/>
   );
 }
 

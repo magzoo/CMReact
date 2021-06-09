@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-picker/picker": "^1.16.1",
     "react": "17.0.1",
     "react-native": "0.64.2",
-    "react-native-bootstrap-styles": "^4.5.0-r"
+    "react-native-bootstrap-styles": "^4.5.0-r",
+    "react-native-calendars": "^1.1263.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
