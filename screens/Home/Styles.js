@@ -17,7 +17,24 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'gray',
         height: 350
-      }
+      },
+
+      buttonContainer: {
+        flexDirection: 'row',
+      },
+      
+      button: {
+        marginTop: 20,
+        marginLeft: 30,
+        width: 75,
+        backgroundColor: '#33BDFF',
+        height: 75,
+      },
+      
+      buttonTitle: {
+        marginTop: 18,
+        marginLeft: 7,
+      },
 });
 
 export default styles;
