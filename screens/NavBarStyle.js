@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
           justifyContent: 'center',
       },
 
-      btnText: {
-          fontSize: 11,
-
-      },
-
       btnTabActive: {
           backgroundColor: '#33BDFF',
       },

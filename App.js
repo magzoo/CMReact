@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type {Node} from 'react';
+import {NavigationContainer} from '@react-navigation/native'
 import {
   SafeAreaView,
   ScrollView,
@@ -35,7 +36,10 @@ import Nav from './screens/NavBar'
 
 const App: () => React$Node = () => {
   return (
-    <Nav/>
+    <NavigationContainer>
+      <Nav/>
+    </NavigationContainer>
+
   );
 }
 

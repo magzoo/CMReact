@@ -1,40 +1,38 @@
-import { types } from '@babel/core'
-import React, {userState, useState} from 'react'
-import {Text, View, FlatList, Image, SafeAreaView, TouchableOpacity} from 'react-native'
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+import Index from './Index';
 import styles from './NavBarStyle'
-import Index from './Index'
 
-
-const tabs = 
-        [{type: 'Calendário'},
-        {type: 'Eventos'},
-        {type: 'Utilizadores'},
-        {type: 'Definições'}]
-
-const NavBar = () => {
-    const [type, setType] = useState('Calendário');
-    const setTypeFilter = type => {
-        setType(type)
-    }
-    return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.listTab}>
-                {
-                    tabs.map(e => (
-                        <TouchableOpacity 
-                        style={[styles.btnTab, type === e.type && styles.btnTabActive]}
-                        onPress= {() => setTypeFilter(e.type)}>
-                            <Text style={styles.btnText}>
-                                {e.type}
-                            </Text>
-                        </TouchableOpacity>
-                    ))
-                }
-            </View>
-            <Index/>
-        </SafeAreaView>
-    )
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
+  );
 }
 
-export default NavBar;
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
+const Tab = createMaterialTopTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Calendário" component={Index} />
+      <Tab.Screen name="Eventos" component={Index} />
+      <Tab.Screen name="Utilizadores" component={Index} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
+
+export default MyTabs;
