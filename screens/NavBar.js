@@ -29,8 +29,7 @@ function MyTabs() {
     <Tab.Navigator>
       <Tab.Screen name="Calendário" component={Index} />
       <Tab.Screen name="Eventos" component={Index} />
-      <Tab.Screen name="Utilizadores" component={Index} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Perfil" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
