@@ -31,11 +31,11 @@ import {
 import { TestScheduler } from '@jest/core';
 
 
-import HomeScreen from './screens/Home/Index'
+import Nav from './screens/NavBar'
 
 const App: () => React$Node = () => {
   return (
-    <HomeScreen/>
+    <Nav/>
   );
 }
 

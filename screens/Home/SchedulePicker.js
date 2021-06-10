@@ -6,15 +6,18 @@ import styles from './Styles'
 
 
 const SchedulePicker= () =>{
-    const [ pickerValue, setPickerValue ] = useState("JavaScript");
+    state = {selected: "Geral"};
+    var types = ["Geral","Trabalho","Familia","Amigos"];
     return ( 
         <View style={styles.container}>
             <Picker style={styles.picker}
-            selectedValue={pickerValue}
-            onValueChange={ (itemValue) => setPickerValue(itemValue)}>
-                <Picker.Item label="JavaScript" value="JavaScript"/>
-                <Picker.Item label="Java" value="Java"/>
-                <Picker.Item label="C#" value="C#"/>
+            selectedValue={this.state.selected}
+            onValueChange={() => {}}>
+                {types.map((item,index) => {
+                    return (
+                        <Picker.Item label={item} value={index}/>
+                    )
+                })}
             </Picker>
         </View>
     );

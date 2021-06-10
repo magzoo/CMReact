@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
       container: {
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#33BDFF',
       },
 
       picker: {
@@ -24,7 +25,8 @@ const styles = StyleSheet.create({
       },
       
       button: {
-        marginTop: 20,
+        marginTop: 10,
+        marginBottom: 10,
         marginLeft: 30,
         width: 75,
         backgroundColor: '#33BDFF',

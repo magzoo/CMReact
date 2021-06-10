@@ -25,14 +25,9 @@ const Schedule = () => {
           pastScrollRange={0}
           // Max amount of months allowed to scroll to the future. Default = 50
           futureScrollRange={0}
-          // Enable or disable scrolling of calendar list
-          scrollEnabled={true}
-          // Enable or disable vertical scroll indicator. Default = false
-          showScrollIndicator={true}
           maxDate={new Date()}
           onDayPress={(day) => {console.log('selected day',day)}}
           hideArrows={false}
-          hideExtraDays={false}
           
         />
 
