@@ -6,6 +6,29 @@ const styles = StyleSheet.create({
         backgroundColor: '#33BDFF'
       },
 
+      nameHour:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+
+      textMarginLeft: {
+        marginLeft: 10,
+      },
+
+      textMarginRight: {
+        marginRight: 10,
+      },
+
+      buttonEventContainer:{
+        borderColor: '#33BDFF',
+        borderWidth: 2,
+        backgroundColor: '#ffffff',
+      },
+
+      eventContainer:{
+        marginTop: 10,
+      },
+
       title: {
         fontSize: 18,
         fontWeight: 'bold',

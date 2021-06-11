@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, ScrollView} from "react-native";
 
 
 import Buttons from './EventsScreen/Buttons';
@@ -8,8 +8,10 @@ import EventList from './EventsScreen/ListOfEvents';
 const EventScreen= () =>{
     return (
         <View>
-            <EventList/>
-            <Buttons/>
+            <ScrollView>
+                <EventList/>
+                <Buttons/>
+            </ScrollView>
         </View>
     );
 };

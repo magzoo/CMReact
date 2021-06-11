@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {View, Text} from "react-native";
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import styles from './Styles'
 
@@ -16,6 +18,15 @@ LocaleConfig.locales['pt'] = {
 LocaleConfig.defaultLocale = 'pt';
 
 
+function changeToEvent(day){
+  const navigation = useNavigation();
+  navigation.navigate('Eventos',{
+    dia: day
+  });
+
+
+}
+
 const Schedule = () => {
     return (
         <CalendarList
@@ -26,7 +37,7 @@ const Schedule = () => {
           // Max amount of months allowed to scroll to the future. Default = 50
           futureScrollRange={0}
           maxDate={new Date()}
-          onDayPress={(day) => {console.log('selected day',day)}}
+          onDayPress={changeToEvent()}
           hideArrows={false}
           
         />

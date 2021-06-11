@@ -23,20 +23,6 @@ const styles = StyleSheet.create({
       buttonContainer: {
         flexDirection: 'row',
       },
-      
-      button: {
-        marginTop: 15,
-        marginBottom: 10,
-        marginLeft: 30,
-        width: 75,
-        backgroundColor: '#33BDFF',
-        height: 75,
-      },
-      
-      buttonTitle: {
-        marginTop: 18,
-        marginLeft: 7,
-      },
 });
 
 export default styles;
