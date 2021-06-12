@@ -4,15 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Index from './Index';
-import styles from './NavBarStyle'
+import styles from './NavBarStyle';
+import EventNavigator from './Navigation/EventNavigator';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
 
 function SettingsScreen() {
   return (
@@ -26,9 +20,9 @@ const Tab = createMaterialTopTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator >
       <Tab.Screen name="Calendário" component={Index} />
-      <Tab.Screen name="Eventos" component={Index} />
+      <Tab.Screen name="Eventos" component={EventNavigator} />
       <Tab.Screen name="Perfil" component={SettingsScreen} />
     </Tab.Navigator>
   );
