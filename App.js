@@ -11,6 +11,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import type {Node} from 'react';
 import {NavigationContainer} from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   SafeAreaView,
   ScrollView,
@@ -33,12 +34,18 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { TestScheduler } from '@jest/core';
 
-
 import Nav from './screens/NavBar'
+import Home from './screens/Index'
+import Event from './screens/Event'
+import AddEvent from './screens/EventsScreen/AddEvent'
+import { navigationRef } from './screens/Navigation/RootNavigation';
+
+
+const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Nav/>
     </NavigationContainer>
 

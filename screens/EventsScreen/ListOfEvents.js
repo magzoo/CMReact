@@ -3,12 +3,14 @@ import { StyleSheet,ScrollView, Text, View } from 'react-native'
 
 import styles from './Styles'
 import Row from './EventRow';
+import * as RootNavigation from '../Navigation/RootNavigation'
 
-const ListEvents = () =>{
+const ListEvents = (props) =>{
+    const selectedDay = props.day;
     return(
         <View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>11/06/2021</Text>
+                <Text style={styles.title}>A</Text>
             </View>
                 <Row/>
         </View>
