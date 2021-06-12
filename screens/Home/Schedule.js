@@ -19,15 +19,14 @@ LocaleConfig.defaultLocale = 'pt';
 
 const Schedule = () => {
     return (
-        <CalendarList
+        <Calendar
           // Callback which gets executed when visible months change in scroll view. Default = undefined
           onVisibleMonthsChange={(months) => {}}
           // Max amount of months allowed to scroll to the past. Default = 50
           pastScrollRange={0}
           // Max amount of months allowed to scroll to the future. Default = 50
           futureScrollRange={0}
-          maxDate={new Date()}
-          onDayPress={(day) => {RootNavigation.navigate('Eventos',{day: day})}}
+          onDayPress={(day) => {RootNavigation.navigate('EventosLista',{day: day})}}
           hideArrows={false}
 
           

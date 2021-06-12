@@ -10,7 +10,7 @@ const ListEvents = (props) =>{
     return(
         <View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>A</Text>
+                <Text style={styles.title}>{selectedDay.dateString}</Text>
             </View>
                 <Row/>
         </View>

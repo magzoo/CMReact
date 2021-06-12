@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Eventos" component={EventScreen}/>
+      <Stack.Screen name="EventosLista" component={EventScreen}/>
       <Stack.Screen name="AddEvent" component={AddEvent} />
     </Stack.Navigator>
   );
