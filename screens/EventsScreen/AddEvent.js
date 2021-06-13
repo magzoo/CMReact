@@ -42,7 +42,7 @@ const AddEvent = (props) =>{
                 onChange={onChange}
                 />
                 )}
-                <Button title="Date" onPress={() => {console.log(date)}}/>
+                <Text>{date.getHours()}:{date.getMinutes()}</Text>
             </View>
         )
     }
