@@ -2,8 +2,8 @@ import React from "react";
 import {View, Text} from "react-native";
 
 
-import SchedulePicker from './Home/SchedulePicker'
-import Schedule from './Home/Schedule'
+import SchedulePicker from '../Components/Home/SchedulePicker'
+import Schedule from '../Components/Home/Schedule'
 
 const HomeScreen= () =>{
     return (

@@ -4,8 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 
-import EventScreen from '../Event'
-import AddEvent from '../EventsScreen/AddEvent';
+import EventScreen from '../screens/Event'
+import AddEvent from '../screens/AddEvent';
 
 
 const Stack = createStackNavigator();

@@ -3,7 +3,7 @@ import {View, Text} from "react-native";
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import { useNavigation } from '@react-navigation/native';
 import styles from './Styles'
-import * as RootNavigation from '../Navigation/RootNavigation'
+import * as RootNavigation from '../../Navigation/RootNavigation'
 
 import {LocaleConfig} from 'react-native-calendars';
 

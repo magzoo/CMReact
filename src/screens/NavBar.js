@@ -4,8 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Index from './Index';
-import EventNavigator from './Navigation/EventNavigator';
-import styles from './NavBarStyle';
+import EventNavigator from '../Navigation/EventNavigator';
 
 
 function SettingsScreen() {

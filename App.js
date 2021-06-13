@@ -34,16 +34,13 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { TestScheduler } from '@jest/core';
 
-import Nav from './screens/NavBar'
-import Home from './screens/Index'
-import Event from './screens/Event'
-import AddEvent from './screens/EventsScreen/AddEvent'
-import { navigationRef } from './screens/Navigation/RootNavigation';
+import Nav from './src/screens/NavBar'
+import { navigationRef } from './src/Navigation/RootNavigation';
 
 
 const Stack = createStackNavigator();
 
-const App: () => React$Node = () => {
+const App = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Nav/>
@@ -51,6 +48,5 @@ const App: () => React$Node = () => {
 
   );
 }
-
 
 export default App;
