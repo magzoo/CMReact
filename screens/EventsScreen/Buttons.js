@@ -20,7 +20,7 @@ const Buttons = (props) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} onPress={() => {
                   if(selectedDay !== "Selecione um dia"){
-                    RootNavigation.navigate("AddEvent")
+                    RootNavigation.navigate("AddEvent",{day: selectedDay})
                   }
                 }}>
                     <Text style={styles.buttonTitle}>Adicionar Evento</Text>

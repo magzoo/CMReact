@@ -17,8 +17,8 @@ const EventScreen = (props) =>{
     return (
         <View>
             <ScrollView>
-                <EventList/>
-                <Buttons/>
+                <EventList day={selectedDay}/>
+                <Buttons day={selectedDay}/>
             </ScrollView>
         </View>
     );
