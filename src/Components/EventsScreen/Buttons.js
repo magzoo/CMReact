@@ -2,10 +2,10 @@ import React from 'react';
 import {  View,TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as RootNavigation from '../Navigation/RootNavigation'
+import * as RootNavigation from '../../Navigation/RootNavigation'
 
 import styles from './Styles'
-import AddingEvent from './AddEvent';
+import AddingEvent from '../../screens/AddEvent';
 
 
 const AddEvent = () => {
@@ -19,7 +19,7 @@ const Buttons = (props) => {
     return (
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} onPress={() => {
-                  if(selectedDay !== "Selecione um dia"){
+                  if(selectedDay.dateString != "Selecione um dia"){
                     RootNavigation.navigate("AddEvent",{day: selectedDay})
                   }
                 }}>

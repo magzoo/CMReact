@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {View, Button, Platform, Text} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as RootNavigation from '../Navigation/RootNavigation'
-import styles from './Styles'
-import Form from './AddEventComponents/Form';
 
 const AddEvent = (props) =>{
         var selectedDay = props.route.params.day;
@@ -42,7 +40,7 @@ const AddEvent = (props) =>{
                 onChange={onChange}
                 />
                 )}
-                <Button title="Date" onPress={() => {console.log(date)}}/>
+                <Text>{date.getHours()}:{date.getMinutes()}</Text>
             </View>
         )
     }

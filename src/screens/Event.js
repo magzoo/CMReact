@@ -3,8 +3,8 @@ import {View, ScrollView} from "react-native";
 
 
 
-import Buttons from './EventsScreen/Buttons';
-import EventList from './EventsScreen/ListOfEvents';
+import Buttons from '../Components/EventsScreen/Buttons';
+import EventList from '../Components/EventsScreen/ListOfEvents';
 
 
 const EventScreen = (props) =>{
