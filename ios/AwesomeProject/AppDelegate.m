@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import <GoogleMaps/GoogleMaps.h>
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -26,7 +25,7 @@ static void InitializeFlipper(UIApplication *application) {
 
 @implementation AppDelegate
 
-[GMSServices provideAPIKey:@"AIzaSyCy2ZLW2HnMjpqfa7nkA5lVCBUqPBFHXGA"]; // add this line using the api key obtained from Google Console
+(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);

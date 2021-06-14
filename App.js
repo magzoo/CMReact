@@ -35,15 +35,15 @@ import {
 import { TestScheduler } from '@jest/core';
 
 import Nav from './src/screens/NavBar'
+import MainStack from './src/Navigation/MainNavigator';
 import { navigationRef } from './src/Navigation/RootNavigation';
-
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Nav/>
+      <MainStack/>
     </NavigationContainer>
 
   );
