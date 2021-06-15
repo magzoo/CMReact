@@ -18,7 +18,6 @@ componentDidMount = () => {
   const {email, displayName} = auth().currentUser;
   state.email = email;
   state.displayName = displayName;
-  console.log(state);
 }
 
 componentDidMount();
