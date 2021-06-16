@@ -11,7 +11,7 @@ const ListEvents = (props) =>{
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>{selectedDay.dateString}</Text>
             </View>
-                <Row/>
+                <Row day={selectedDay} schedule={props.schedule} events={props.events}/>
         </View>
     )
 }
