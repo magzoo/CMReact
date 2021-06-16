@@ -5,10 +5,11 @@ import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 
-const RemoveSchedule = () =>{
-    var newSchedule = "";
+const EditSchedule = () =>{
+    const [newSchedule, setNewSchedule] = useState("");
     const[types,setTypes] = useState([]);
     const[value,setValue] = useState(0);
+    const[events,setEvents] = useState([]);
 
     const {email, displayName} = auth().currentUser;
     firestore()
@@ -24,13 +25,27 @@ const RemoveSchedule = () =>{
         });
     return(
         <View>
-                <Text style={styles.title}>Remover Calendário</Text>
+                <Text style={styles.title}>Editar Calendário</Text>
                 <View style={styles.pickerView}>
-                    <Text style={styles.infoText}>Selecione o calendário que pretende remover:</Text>
+                    <Text style={styles.infoText}>Selecione o calendário que pretende editar:</Text>
                     <View style={styles.container}>
                     <Picker style={styles.picker}
           selectedValue={types[0]}
-          onValueChange={(value) => { setValue(value) }}>
+          onValueChange={(value) => {setValue(value)
+            firestore()
+            .collection("Events")
+            .where("type", '==', types[value])
+            .get()
+            .then(function(querySnapShot){
+              var events2 = [];
+              querySnapShot.forEach(function(doc){
+                events2.push(doc.data());
+              });
+              setEvents(events2);
+            });
+            
+                                                                                                                                                
+            }}>
               {
               types.map((item,index) => {
                   return (
@@ -40,23 +55,31 @@ const RemoveSchedule = () =>{
               }</Picker>
                 </View>
                 </View>
+                <View>
+                    <Text style={styles.editTitle}>Novo nome</Text>
+                    <TextInput style={styles.textInput} placeholder="Insira novo nome" onChangeText={(value) =>{setNewSchedule(value)}}></TextInput>
+                </View>
             <View style={styles.buttonsContainer}>
                 <View style={styles.buttonContainerLeft}>
                     <Button title="Voltar" onPress={() => {RootNavigation.navigate("HomeScreen")}}/>
                 </View>
                 <View style={styles.buttonContainerRight}>
-                    <Button title="Remover" onPress={() =>{
+                    <Button title="Editar" onPress={() =>{
                         const {email, displayName} = auth().currentUser;
-                        if(types[value] !== ""){
+                        if(newSchedule != ""){
                             firestore().collection("Schedules")
                             .where("userEmail","==",email)
                             .where("name","==",types[value])
                             .get()
                             .then(querySnapShot => {
-                                querySnapShot.docs[0].ref.delete();
+                                querySnapShot.docs[0].ref.update({
+                                    "name": newSchedule,
+                                    "userEmail": email
+                                });
                             })
-                        RootNavigation.navigate("HomeScreen");
+
                         }
+                        RootNavigation.navigate("HomeScreen");
                     }} />
                 </View>
             </View>
@@ -99,8 +122,13 @@ const styles = StyleSheet.create({
     },
     textInput: {
         textAlign:"center",
-        marginTop: 50
+        marginTop: 20
         
+    },
+    editTitle: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 30,
     },
     pickerView: {
         justifyContent: 'center',
@@ -118,4 +146,4 @@ const styles = StyleSheet.create({
       },
 });
 
-export default RemoveSchedule;
+export default EditSchedule;

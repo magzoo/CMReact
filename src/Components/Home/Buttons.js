@@ -16,7 +16,7 @@ const Buttons = () => {
                     <Button title="Remover Calendário" onPress={()=>{ RootNavigation.navigate("RemoveSchedule")}}/>
                 </View>
                 <View style={styles.buttonViewRight}>
-                    <Button title="Editar Calendário" onPress={()=>{ RootNavigation.navigate("AddSchedule")}}/>
+                    <Button title="Editar Calendário" onPress={()=>{ RootNavigation.navigate("EditSchedule")}}/>
                 </View>
             </View>
     );

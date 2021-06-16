@@ -8,7 +8,7 @@ const AddSchedule = () =>{
     var newSchedule = "";
     return(
         <View>
-                <Text style={styles.title}>Adicionar Calendário</Text>
+            <Text style={styles.title}>Adicionar Calendário</Text>
             <TextInput style={styles.textInput} placeholder="Insira novo calendário" onChangeText={(value) =>{ newSchedule = value}}></TextInput>
             <View style={styles.buttonsContainer}>
                 <View style={styles.buttonContainerLeft}>
