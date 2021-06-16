@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 
 import Index from './Index';
 import EventNavigator from '../Navigation/EventNavigator';
+import HomeNavigator from '../Navigation/HomeNavigator'
 
 
 function SettingsScreen() {
@@ -42,7 +43,7 @@ const Tab = createMaterialTopTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator >
-      <Tab.Screen name="Calendário" component={Index} />
+      <Tab.Screen name="Calendário" component={HomeNavigator} />
       <Tab.Screen name="Eventos" component={EventNavigator} />
       <Tab.Screen name="Perfil" component={SettingsScreen} />
     </Tab.Navigator>

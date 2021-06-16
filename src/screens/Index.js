@@ -1,14 +1,16 @@
 import React from "react";
 import {View, Text} from "react-native";
-
+import Buttons from '../Components/Home/Buttons'
 import Schedule from '../Components/Home/Schedule'
 
-const HomeScreen= () =>{
-    return (
+const HomeScreen= (props) =>{
+        return(
         <View>
-            <Schedule/>
-        </View>
-    );
+        <Schedule/>
+        <Buttons/>
+        </View>   
+        )
+
 };
 
 export default HomeScreen;
