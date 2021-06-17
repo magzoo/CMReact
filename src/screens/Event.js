@@ -16,12 +16,12 @@ const EventScreen = (props) =>{
      if (props.route.params){
          selectedDay = props.route.params.day;
          selectedSchedule = props.route.params.schedule;
-         events = props.route.params.events;
+         event = props.route.params.event;
      }
     return (
         <View>
             <ScrollView>
-                <EventList day={selectedDay} schedule={selectedSchedule} events={events}/>
+                <EventList day={selectedDay} schedule={selectedSchedule}/>
                 <Buttons day={selectedDay} schedule={selectedSchedule}/>
             </ScrollView>
         </View>

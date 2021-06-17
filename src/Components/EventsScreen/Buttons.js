@@ -3,16 +3,13 @@ import {  View,TouchableOpacity, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as RootNavigation from '../../Navigation/RootNavigation'
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
 
 import styles from './Styles'
-import AddingEvent from '../../screens/AddEvent';
+import {RemoveEvent} from './EventRow'
 
 
-const AddEvent = () => {
-    return(
-        <AddingEvent/>
-    )
-}
 
 const Buttons = (props) => {
   const selectedDay = props.day;
@@ -26,7 +23,9 @@ const Buttons = (props) => {
                 }}/>
             </View>
             <View style={styles.buttonView}>
-                <Button title="Remover Calendário" onPress={()=>{ RootNavigation.navigate("RemoveSchedule")}}/>
+                <Button title="Remover Calendário" onPress={()=>{ 
+                    RemoveEvent();
+                }}/>
             </View>
             <View style={styles.buttonViewRight}>
                 <Button title="Editar Calendário" onPress={()=>{ RootNavigation.navigate("EditSchedule")}}/>
