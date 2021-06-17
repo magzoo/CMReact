@@ -5,24 +5,23 @@ import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 
-const EditSchedule = () =>{
+
+const EditSchedule = (props) =>{
     const [newSchedule, setNewSchedule] = useState("");
     const[types,setTypes] = useState([]);
     const[value,setValue] = useState(0);
-    const[events,setEvents] = useState([]);
-
     const {email, displayName} = auth().currentUser;
     firestore()
-        .collection("Schedules")
-        .where('userEmail','==',email)
-        .get()
-        .then(function(querySnapShot){
-            var types2 = [];
-            querySnapShot.forEach(function(doc){
-                types2.push(doc.data().name);
-            });
-            setTypes(types2);
-        });
+    .collection("Schedules")
+    .where("userEmail","==",email)
+    .get()
+    .then(function (querySnapShot) {
+      var types2 = [];
+      querySnapShot.forEach(function (doc) {
+        types2.push(doc.data().name)
+      })
+      setTypes(types2)
+    })
     return(
         <View>
                 <Text style={styles.title}>Editar Calendário</Text>
@@ -31,21 +30,7 @@ const EditSchedule = () =>{
                     <View style={styles.container}>
                     <Picker style={styles.picker}
           selectedValue={types[0]}
-          onValueChange={(value) => {setValue(value)
-            firestore()
-            .collection("Events")
-            .where("type", '==', types[value])
-            .get()
-            .then(function(querySnapShot){
-              var events2 = [];
-              querySnapShot.forEach(function(doc){
-                events2.push(doc.data());
-              });
-              setEvents(events2);
-            });
-            
-                                                                                                                                                
-            }}>
+          onValueChange={(value) => {setValue(value)}}>
               {
               types.map((item,index) => {
                   return (
@@ -67,6 +52,21 @@ const EditSchedule = () =>{
                     <Button title="Editar" onPress={() =>{
                         const {email, displayName} = auth().currentUser;
                         if(newSchedule != ""){
+
+                            firestore().collection("Events")
+                            .where("type","==",types[value])
+                            .where("userEmail","==",email)
+                            .get()
+                            .then( response =>{
+                                let batch = firestore().batch();
+                                response.forEach((doc) =>{
+                                    const docRef = firestore().collection("Events").doc(doc.id)
+                                    batch.update(docRef,{"type": newSchedule})
+                                }) 
+                                batch.commit();
+                            })
+
+
                             firestore().collection("Schedules")
                             .where("userEmail","==",email)
                             .where("name","==",types[value])
@@ -76,17 +76,15 @@ const EditSchedule = () =>{
                                     "name": newSchedule,
                                     "userEmail": email
                                 });
-                            })
+                            });
+                            RootNavigation.navigate("HomeScreen");
                         }
-                        RootNavigation.navigate("HomeScreen");
                     }} />
                 </View>
             </View>
         </View>
     )
 }
-
-
 
 const styles = StyleSheet.create({
     container: {

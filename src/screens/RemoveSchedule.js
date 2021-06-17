@@ -47,13 +47,23 @@ const RemoveSchedule = () =>{
                 <View style={styles.buttonContainerRight}>
                     <Button title="Remover" onPress={() =>{
                         const {email, displayName} = auth().currentUser;
-                        if(types[value] !== ""){
+                        if(types[value] != ""){
                             firestore().collection("Schedules")
                             .where("userEmail","==",email)
                             .where("name","==",types[value])
                             .get()
                             .then(querySnapShot => {
                                 querySnapShot.docs[0].ref.delete();
+                            })
+
+                            firestore().collection("Events")
+                            .where("userEmail","==",email)
+                            .where("type","==",types[value])
+                            .get()
+                            .then(querySnapShot => {
+                                querySnapShot.forEach((element) =>{
+                                    element.ref.delete();
+                                })
                             })
                         RootNavigation.navigate("HomeScreen");
                         }

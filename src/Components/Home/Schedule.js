@@ -22,55 +22,53 @@ LocaleConfig.defaultLocale = 'pt';
 const Schedule = () =>{
   const[types,setTypes] = useState([]);
   const[events,setEvents] = useState([]);
-  const[markers,setMarkers] = useState([]);
-  const[mark,setMark] = useState({});
+  const[mark,setMark] = useState([{}]);
   const[value,setValue] = useState(0);
-
   const {email, displayName} = auth().currentUser;
-  firestore()
+
+      firestore()
       .collection("Schedules")
-      .where('userEmail','==',email)
+      .where("userEmail","==",email)
+      .get()
+      .then(function (querySnapShot) {
+        var types2 = [];
+        querySnapShot.forEach(function (doc) {
+          types2.push(doc.data().name)
+        })
+        setTypes(types2)
+      })
+
+      firestore()
+      .collection("Events")
+      .where('userEmail', "==", email)
       .get()
       .then(function(querySnapShot){
-          var types2 = [];
-          querySnapShot.forEach(function(doc){
-              types2.push(doc.data().name);
-          });
-          setTypes(types2);
-      });
+        var events2 = [];
+        querySnapShot.forEach(function(doc) {
+          events2.push(doc.data())
+        })
+        setEvents(events2)
+      })
+
       return(
         <View>
           <View style={styles.container}>
           <Picker style={styles.picker}
           selectedValue={types[0]}
           onValueChange={(value) => {
-              firestore()
-              .collection("Events")
-              .where("type", '==', types[value])
-              .get()
-              .then(function(querySnapShot){
-                var events2 = [];
-                querySnapShot.forEach(function(doc){
-                  events2.push(doc.data());
-                });
-                setEvents(events2);
-                var markers2 = []
-                events.forEach((day) =>{
-                  markers2.push(day.day)
-                });
-                setMarkers(markers2);
-                var mark2 = {};
-                markers.forEach((day) =>{
-                  mark2[day] = {selected: true}
-                })
-                setMark(mark2);
-                setValue(value);
-              });
+            var mark2 = {};
+            events.forEach((element) =>{
+              if(element.type == types[value]){
+                mark2[element.day] = {selected: true}
+              }
+            });
+            setMark(mark2);
+            setValue(value);
           }}>
               {
               types.map((item,index) => {
                   return (
-                      <Picker.Item label={item} value={index}/>
+                      <Picker.Item label={item} value={index} key={index} />
                   )
               })}
           </Picker>
@@ -92,6 +90,7 @@ const Schedule = () =>{
         </View>
   
       )
+
 
 }
 

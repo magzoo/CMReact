@@ -110,7 +110,7 @@ const AddEvent = (props) =>{
                   </View>
                   <View style={styles.buttonContainerRight}>
                   <Button title="Adicionar" onPress={()=>{
-                    if(eventName != "" && description != description && address != "None"){
+                    if(eventName != "" && description != "" && address != "None"){
                       firestore().collection("Events")
                       .add(
                         {
