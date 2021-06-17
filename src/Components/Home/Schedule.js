@@ -83,7 +83,7 @@ const Schedule = () =>{
             pastScrollRange={0}
             // Max amount of months allowed to scroll to the future. Default = 50
             futureScrollRange={0}
-            onDayPress={(day) => {RootNavigation.navigate('EventosLista',{day: day, schedule: types[this.state.value], events: events})}}
+            onDayPress={(day) => {RootNavigation.navigate('EventosLista',{day: day, schedule: types[value], events: events})}}
             hideArrows={false}
   
             markedDates={ mark }

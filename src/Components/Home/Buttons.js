@@ -5,8 +5,7 @@ import * as RootNavigation from '../../Navigation/RootNavigation'
 import styles from './Styles'
 
 
-const Buttons = () => {
-
+const Buttons = (props) => {
     return (
             <View style={styles.buttonContainer}>
                 <View style={styles.buttonViewLeft}>

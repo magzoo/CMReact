@@ -77,7 +77,6 @@ const EditSchedule = () =>{
                                     "userEmail": email
                                 });
                             })
-
                         }
                         RootNavigation.navigate("HomeScreen");
                     }} />
