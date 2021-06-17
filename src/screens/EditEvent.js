@@ -6,11 +6,11 @@ import MapView, {Marker} from 'react-native-maps';
 import Geocoder from 'react-native-geocoder';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
+import { add } from 'react-native-reanimated';
 
 const EditEvent = (props) =>{
         var selectedDay = props.route.params.day;
         var chosenEvent = props.route.params.event;
-        console.log(chosenEvent)
         const [date, setDate] = useState(new Date(1598051730000));
         const [mode, setMode] = useState('date');
         const [show, setShow] = useState(false);
@@ -114,24 +114,23 @@ const EditEvent = (props) =>{
                   <Button title="Editar" onPress={()=>{
                     if(eventName != "" && description != "" && address != "None"){
                       firestore().collection("Events")
-                      .where("userEmail","==",email)
-                      .where("name", "==",chosenEvent.name)
+                      .where("userEmail", "==", email)
+                      .where("type","==",props.route.params.schedule)
+                      .where("name","==",chosenEvent.name)
+                      .where("description","==",chosenEvent.description)
                       .get()
-                      .then( response =>{
-                          let batch = firestore().batch();
-                          response.forEach((doc) =>{
-                              const docRef = firestore().collection("Events").doc(doc.id)
-                              batch.update(docRef,{                         
-                              "name": eventName,
-                              "description": description,
-                              "day": selectedDay.dateString,
-                              "address": address,
-                              "type": props.route.params.schedule,
-                              "userEmail": email,
-                              "time": date.getHours() + ":" + date.getMinutes()})
-                          }) 
-                          batch.commit();
-                      })
+                      .then(querySnapShot => {
+                        querySnapShot.docs[0].ref.update({
+                          "name": eventName,
+                          "description": description,
+                          "day": selectedDay.dateString,
+                          "address": address,
+                          "type": props.route.params.schedule,
+                          "userEmail": email,
+                          "time": date.getHours() + ":" + date.getMinutes()
+                        });
+                    });
+
                       RootNavigation.navigate("EventosLista",{day: selectedDay})
                     }
                   }}/>

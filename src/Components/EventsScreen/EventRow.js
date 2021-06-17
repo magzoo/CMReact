@@ -70,7 +70,6 @@ const EventListRow = (props) =>{
 const RemoveEvent = (props) =>{
     const {email, displayName} = auth().currentUser;
     if(getChosenEvent().name !== ""){
-        console.log(getChosenEvent())
         firestore().collection("Events")
         .where("userEmail", "==", email)
         .where("name","==",getChosenEvent().name)

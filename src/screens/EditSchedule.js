@@ -6,7 +6,7 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 
 
-const EditSchedule = (props) =>{
+const EditSchedule = () =>{
     const [newSchedule, setNewSchedule] = useState("");
     const[types,setTypes] = useState([]);
     const[value,setValue] = useState(0);
@@ -33,6 +33,7 @@ const EditSchedule = (props) =>{
           onValueChange={(value) => {setValue(value)}}>
               {
               types.map((item,index) => {
+                console.log(types);
                   return (
                       <Picker.Item label={item} value={index}/>
                   )

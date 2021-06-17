@@ -32,7 +32,7 @@ const Buttons = (props) => {
             <View style={styles.buttonViewRight}>
                 <Button title="Editar Evento" onPress={()=>{ 
                     if(Object.keys(getChosenEvent()).length !== 0){
-                        RootNavigation.navigate("EditEvent",{day:selectedDay ,event: getChosenEvent()})
+                        RootNavigation.navigate("EditEvent",{day:selectedDay ,event: getChosenEvent(), schedule: props.schedule})
                     }
                     }}/>
             </View>
