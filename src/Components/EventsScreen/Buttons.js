@@ -7,7 +7,7 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 
 import styles from './Styles'
-import {RemoveEvent} from './EventRow'
+import {RemoveEvent,getChosenEvent} from './EventRow'
 
 
 
@@ -23,12 +23,18 @@ const Buttons = (props) => {
                 }}/>
             </View>
             <View style={styles.buttonView}>
-                <Button title="Remover Calendário" onPress={()=>{ 
+                <Button title="Remover Evento" onPress={()=>{ 
+                    if(Object.keys(getChosenEvent()).length !== 0){
                     RemoveEvent();
+                    }
                 }}/>
             </View>
             <View style={styles.buttonViewRight}>
-                <Button title="Editar Calendário" onPress={()=>{ RootNavigation.navigate("EditSchedule")}}/>
+                <Button title="Editar Evento" onPress={()=>{ 
+                    if(Object.keys(getChosenEvent()).length !== 0){
+                        RootNavigation.navigate("EditEvent",{day:selectedDay ,event: getChosenEvent()})
+                    }
+                    }}/>
             </View>
         </View>
     );

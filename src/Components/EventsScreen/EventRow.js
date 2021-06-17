@@ -58,7 +58,7 @@ const EventListRow = (props) =>{
                                             <Text style={styles.textMarginRight}>Horas: {userData.time}</Text>
                                         </View>
                                         <Text style={styles.textMarginLeft}>Descrição: {userData.description}</Text>
-                                        <Text style={styles.textMarginLeft}>Morada: {userData.address}</Text>
+                                        <Text style={styles.textMarginLeft}>Localização: {userData.address}</Text>
                                     </TouchableOpacity>
                                 </View>
                         )})
@@ -86,4 +86,4 @@ const RemoveEvent = (props) =>{
 }
 
 
-export { EventListRow, RemoveEvent};
+export { EventListRow, RemoveEvent, getChosenEvent};
