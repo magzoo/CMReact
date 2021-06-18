@@ -5,6 +5,7 @@ import React, {useState,useEffect,useContext}from 'react';
 import {View, StyleSheet,Text, Button,SafeAreaView,ScrollView,Image, TouchableOpacity} from 'react-native';
 import { Tab } from 'react-native-elements';
 import {Avatar, Title, TouchableRipple} from 'react-native-paper';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 export default class ProfileScreen extends React.Component{
   render(){
       return(
