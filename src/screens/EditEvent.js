@@ -179,8 +179,13 @@ const EditEvent = (props) =>{
           marginTop: 30
       },
       textInput: {
-          marginTop: 7,
-          textAlign: 'center',
+        borderBottomColor: "#8A8F9E",
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        height: 40,
+        fontSize: 15,
+        color: "#161F3D",
+        width: "70%",
+        alignSelf: "center"
           
       },
       textInputTitle: {
