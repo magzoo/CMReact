@@ -6,16 +6,22 @@ import { Icon } from 'react-native-elements'
 import {View, StyleSheet,Text, Button,SafeAreaView,
   ScrollView,Image, TouchableOpacity,ImageBackground,TextInput,opacity} from 'react-native';
 import Animated from 'react-native-reanimated';
-export default class EditProfile extends React.Component{
-	const [response, setResponse] = React.useState<any>(null);
 
-  const onButtonPress = React.useCallback((type, options) => {
-    if (type === 'capture') {
-      ImagePicker.launchCamera(options, setResponse);
-    } else {
-      ImagePicker.launchImageLibrary(options, setResponse);
-    }
-  }, []);
+
+export default class EditProfile extends React.Component{
+  constructor(props){
+    super(props)
+    const [response, setResponse] = useState(null);
+
+    const onButtonPress = React.useCallback((type, options) => {
+      if (type === 'capture') {
+        ImagePicker.launchCamera(options, setResponse);
+      } else {
+        ImagePicker.launchImageLibrary(options, setResponse);
+      }
+    }, []);
+
+  }
   render(){
       return(
           <View style={styles.container}>

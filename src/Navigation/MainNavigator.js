@@ -20,8 +20,6 @@ function MyStack() {
       <Stack.Screen name="Loading" component={LoadingScreen}/>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen}/>
-      <Stack.Screen name="Profile" component={ProfileScreen}/>
-      <Stack.Screen name="EditProfile" component={EditProfileScreen}/>
       <Stack.Screen name="Nav" component={NavBar}/>
     </Stack.Navigator>
   );
