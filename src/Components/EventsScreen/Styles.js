@@ -34,18 +34,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       buttonContainer: {
+        marginTop: 40,
         flexDirection: 'row',
+        justifyContent: 'space-between'
+      },
+
+      buttonView: {
+        width: '30%'
+      },
+
+      buttonViewLeft: {
+        width: '30%',
+        marginLeft: 5,
       },
       
-      button: {
-        marginTop: 15,
-        marginBottom: 10,
-        marginLeft: 30,
-        width: 75,
-        backgroundColor: '#33BDFF',
-        height: 75,
+      buttonViewRight: {
+        marginRight: 5,
+        width: '30%',
       },
-      
       buttonTitle: {
         marginTop: 18,
         marginLeft: 7,

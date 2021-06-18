@@ -21,8 +21,26 @@ const styles = StyleSheet.create({
       },
 
       buttonContainer: {
+        marginTop: 40,
         flexDirection: 'row',
+        justifyContent: 'space-between'
       },
+
+      buttonView: {
+        width: '30%'
+      },
+
+      buttonViewLeft: {
+        width: '30%',
+        marginLeft: 5,
+      },
+      
+      buttonViewRight: {
+        marginRight: 5,
+        width: '30%',
+      },
+
+
 });
 
 export default styles;

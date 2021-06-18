@@ -33,7 +33,6 @@ export default class EditProfile extends React.Component{
       }
     });
   }  
-
   render(){
     console.log('this.state.resourcePath', JSON.stringify(this.state.resourcePath));
       return(

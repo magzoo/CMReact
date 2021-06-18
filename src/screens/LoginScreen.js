@@ -22,10 +22,9 @@ export default class LoadingScreen extends React.Component{
                 <View style = {styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
-
                 <View style = {styles.form}>
                     <View>
-                        <Text style={styles.inputTitle}>Email Adress</Text>
+                        <Text style={styles.inputTitle}>Email</Text>
                         <TextInput 
                             style={styles.input} 
                             autoCapitalize = "none"
@@ -36,8 +35,8 @@ export default class LoadingScreen extends React.Component{
                 </View>
 
                 <View style = {{marginTop: 32}}>
+                <Text style={styles.inputTitle}>Password</Text>
                     <View>
-                        <Text style={styles.inputTitle}>Password</Text>
                         <TextInput 
                             style={styles.input} 
                             secureTextEntry 
@@ -49,7 +48,7 @@ export default class LoadingScreen extends React.Component{
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                    <Text style={{color: "#FFF", fontWeight: "500"}}>Sign In</Text>
+                    <Text style={{marginTop: 5,color: "#FFF", fontWeight: "500"}}>Sign In</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
@@ -57,16 +56,7 @@ export default class LoadingScreen extends React.Component{
                     onPress={() => this.props.navigation.navigate("Register")}
                 >
                     <Text style={{color: "#414959", fontSize: 13}}>
-                        Dont have an account? <Text style={{color: "#E9446A", fontWeight: "500"}}>Sign Up</Text>
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                    style={{alignSelf: "center", marginTop: 32}}
-                    onPress={() => this.props.navigation.navigate("Profile")}
-                >
-                    <Text style={{color: "#414959", fontSize: 13}}>
-                        TEST PAGE PERFIL<Text style={{color: "#E9446A", fontWeight: "500"}}>PERFIL</Text>
+                        Dont have an account? <Text style={{color: "#33BDFF", fontWeight: "500"}}>Sign Up</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -98,22 +88,30 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         textAlign: "center"
     },
-    from: {
+    form: {
         marginBottom: 40,
-        marginHorizontal: 30
+        marginHorizontal: 30,
+
     },
-    inputTittle: {
+    inputTitle: {
         color: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: "#161F3D"
+        color: "#161F3D",
+        textAlign: 'center'
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#E9446A",
+        backgroundColor: "#33BDFF",
         borderRadius: 4,
-        height: 52,
+        height: 30,
+        width: 80,
         alignItems: "center",
-    }
+    },
+    input: {
+        borderBottomWidth: 1,
+        borderBottomColor:'#33BDFF',
+        marginBottom: 5,
+        textAlign: 'center'
+    },
 });

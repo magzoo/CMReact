@@ -6,13 +6,10 @@ import {View, StyleSheet,Text, Button,SafeAreaView,ScrollView,Image, TouchableOp
 import { Tab } from 'react-native-elements';
 import {Avatar, Title, TouchableRipple} from 'react-native-paper';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import * as RootNavigation from '../Navigation/RootNavigation'
+import auth from '@react-native-firebase/auth';
+import { RootTagContext } from 'react-native/Libraries/ReactNative/RootTag';
 export default class ProfileScreen extends React.Component{
-  state = {
-    email: "",
-    password: "",
-    errorMessage: null
-}
-
   render(){
     const {email, displayName} = auth().currentUser;
     state.email = email;
@@ -26,15 +23,19 @@ export default class ProfileScreen extends React.Component{
             <Image style={styles.userImg} source={require ('../Images/her.jpg',)}/>
             <Text style={styles.userName}>{state.displayName} </Text>
             <View style={styles.userBtnWrapper}>
-              <TouchableOpacity style={styles.userBtn} onPress={()=> this.props.navigation.navigate('EditProfile')}>
+              <TouchableOpacity style={styles.userBtn} onPress={()=> {RootNavigation.navigate("EditProfile")}}>
                 <Text style={styles.userBtnTxt}>Editar Perfil</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.userBtn} onPress={()=>{}}>
-                <Text style={styles.userBtnTxt}>onPress={signOutUser}</Text> 
+              <TouchableOpacity style={styles.userBtn} onPress={()=>{  auth().signOut();
+              RootNavigation.navigate("Login")}}>
+                <Text style={styles.userBtnTxt}>Logout</Text> 
               </TouchableOpacity>
             </View>
             <View style={styles.userBtnWrapper}>
-              <TouchableOpacity style={styles.userBtn} onPress={() => {}}
+              <TouchableOpacity style={styles.userBtn} onPress={() => { 
+                auth().currentUser.delete()
+                RootNavigation.navigate("Login")
+                  }}
                       >
                 <Text style={styles.userBtnTxt}>Eliminar Conta</Text>
               </TouchableOpacity>

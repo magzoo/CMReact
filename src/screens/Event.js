@@ -11,14 +11,18 @@ const EventScreen = (props) =>{
     var selectedDay = {
         "dateString": "Selecione um dia"
      };
+     var selectedSchedule = "None"
+     var events = [];
      if (props.route.params){
          selectedDay = props.route.params.day;
+         selectedSchedule = props.route.params.schedule;
+         event = props.route.params.event;
      }
     return (
         <View>
             <ScrollView>
-                <EventList day={selectedDay}/>
-                <Buttons day={selectedDay}/>
+                <EventList day={selectedDay} schedule={selectedSchedule}/>
+                <Buttons day={selectedDay} schedule={selectedSchedule}/>
             </ScrollView>
         </View>
     );
