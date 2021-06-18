@@ -43,7 +43,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Nav/>
+      <MainStack/>
     </NavigationContainer>
 
   );

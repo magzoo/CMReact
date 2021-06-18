@@ -59,15 +59,6 @@ export default class LoadingScreen extends React.Component{
                         Dont have an account? <Text style={{color: "#33BDFF", fontWeight: "500"}}>Sign Up</Text>
                     </Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity 
-                    style={{alignSelf: "center", marginTop: 32}}
-                    onPress={() => this.props.navigation.navigate("Profile")}
-                >
-                    <Text style={{color: "#414959", fontSize: 13}}>
-                        TEST PAGE PERFIL<Text style={{color: "#E9446A", fontWeight: "500"}}>PERFIL</Text>
-                    </Text>
-                </TouchableOpacity>
             </View>
         );
     }
