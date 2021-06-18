@@ -34,6 +34,9 @@ signOutUser = () => {
       <TouchableOpacity style={{marginTop: 32}} onPress={signOutUser}>
         <Text>Logout</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={{marginTop: 32}} onPress={()=> this.props.navigation.navigate('EditProfile')}>
+        <Text>Teste Profile</Text>
+      </TouchableOpacity>
     </View>
   );
 }

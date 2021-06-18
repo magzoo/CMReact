@@ -7,20 +7,30 @@ import { Tab } from 'react-native-elements';
 import {Avatar, Title, TouchableRipple} from 'react-native-paper';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 export default class ProfileScreen extends React.Component{
+  state = {
+    email: "",
+    password: "",
+    errorMessage: null
+}
+
   render(){
+    const {email, displayName} = auth().currentUser;
+    state.email = email;
+    state.displayName = displayName;
+    console.log(state);
       return(
           <SafeAreaView style={{flex:1, backgroundColor:'#ffff'}}>
             <ScrollView style={styles.container} 
             contentContainerStyle={{justifyContent:'center', alignItems:'center'}}
             showsVerticalScrollIndicator={false}>
             <Image style={styles.userImg} source={require ('../Images/her.jpg',)}/>
-            <Text style={styles.userName}>Cabrita Capone </Text>
+            <Text style={styles.userName}>{state.displayName} </Text>
             <View style={styles.userBtnWrapper}>
               <TouchableOpacity style={styles.userBtn} onPress={()=> this.props.navigation.navigate('EditProfile')}>
                 <Text style={styles.userBtnTxt}>Editar Perfil</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.userBtn} onPress={()=>{}}>
-                <Text style={styles.userBtnTxt}>Logout</Text> 
+                <Text style={styles.userBtnTxt}>onPress={signOutUser}</Text> 
               </TouchableOpacity>
             </View>
             <View style={styles.userBtnWrapper}>

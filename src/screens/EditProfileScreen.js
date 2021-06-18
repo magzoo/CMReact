@@ -3,33 +3,63 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, {useState,useEffect,useContext}from 'react';
 import { Icon } from 'react-native-elements'
-import {View, StyleSheet,Text, Button,SafeAreaView,
-  ScrollView,Image, TouchableOpacity,ImageBackground,TextInput,opacity} from 'react-native';
-import Animated from 'react-native-reanimated';
+import {View, StyleSheet,Text, Button,SafeAreaView,ScrollView,Image, TouchableOpacity,ImageBackground,TextInput} from 'react-native';
+import * as ImagePicker from "react-native-image-picker";
 export default class EditProfile extends React.Component{
-	const [response, setResponse] = React.useState<any>(null);
+	state = {
+    resourcePath:null,
+    res:null,
+}
+  imageGalleryLaunch = () => {
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };   
+    ImagePicker.launchImageLibrary(options, (res) => {
+      console.log('Response = ', res);
 
-  const onButtonPress = React.useCallback((type, options) => {
-    if (type === 'capture') {
-      ImagePicker.launchCamera(options, setResponse);
-    } else {
-      ImagePicker.launchImageLibrary(options, setResponse);
-    }
-  }, []);
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
+      } else {
+        console.log('response', JSON.stringify(res));
+        this.setState({resourcePath:res.assets[0].uri});
+      }
+    });
+  }  
+
   render(){
+    console.log('this.state.resourcePath', JSON.stringify(this.state.resourcePath));
       return(
           <View style={styles.container}>
               <View style={{margin:20}}>
                 <View style={{alignItems:'center'}}>
-                  <TouchableOpacity onPress={()=>{}}>
+                  <TouchableOpacity onPress={this.imageGalleryLaunch}>
+                 
                     <View style={{height:100,width:100,borderRadius:15,
                       justifyContent:'center',alignItems:'center'}}>
-
-                      <ImageBackground 
+                      <ImageBackground   
                         source={require ('../Images/her.jpg',)}
                         style={{height:100,width:100}}
                         imageStyle={{borderRadius:50}}
                       >
+
+                     
+                      <ImageBackground   
+                        source={{uri:this.state.resourcePath}} 
+                        style={{height:100,width:100}}
+                        imageStyle={{borderRadius:50}}
+                      >
+
+                          <View>
+                          
+                          </View>
                           <View>
                               <Image source={require ('../Images/camera.png',)} size={35} style={{
                                 height:30,width:30,
@@ -40,6 +70,7 @@ export default class EditProfile extends React.Component{
 
                               }}/>
                           </View>
+                      </ImageBackground>
                       </ImageBackground>
                     </View>
                   </TouchableOpacity>
