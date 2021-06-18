@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 15,
         color: "#161F3D",
+        textAlign: 'center'
     },
     button: {
         marginHorizontal: 30,
@@ -111,5 +112,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor:'#33BDFF',
         marginBottom: 5,
+        textAlign: 'center'
     },
 });

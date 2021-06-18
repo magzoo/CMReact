@@ -47,7 +47,7 @@ function RegisterScreen(props){
 
                 <View style = {styles.form}>
                     <View>
-                        <Text style={styles.inputTitle}>Nome Completo</Text>
+                    <Text style={styles.inputTitle}>Nome Completo</Text>
                         <TextInput 
                             style={styles.input} 
                             autoCapitalize = "none"
@@ -120,14 +120,15 @@ const styles = StyleSheet.create({
     },
     form: {
         marginBottom: 40,
-        marginHorizontal: 30
+        marginHorizontal: 30,
+
     },
-    inputTittle: {
+    inputTitle: {
         color: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: "#161F3D"
+        color: "#161F3D",
+        textAlign: 'center'
     },
     button: {
         marginHorizontal: 30,
@@ -140,7 +141,8 @@ const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 1,
         borderBottomColor:'#33BDFF',
-        marginBottom: 20,
+        marginBottom: 5,
+        textAlign: 'center'
     },
 });
 
