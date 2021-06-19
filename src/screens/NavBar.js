@@ -8,6 +8,7 @@ import Index from './Index';
 import EventNavigator from '../Navigation/EventNavigator';
 import HomeNavigator from '../Navigation/HomeNavigator'
 import Profile from '../Navigation/ProfileNavigator'
+import editprofile from './EditProfileScreen'
 
 function SettingsScreen() {
   state = {
@@ -45,7 +46,7 @@ function MyTabs() {
     <Tab.Navigator >
       <Tab.Screen name="Calendário" component={HomeNavigator} />
       <Tab.Screen name="Eventos" component={EventNavigator} />
-      <Tab.Screen name="Perfil" component={Profile} />
+      <Tab.Screen name="Perfil" component={editprofile} />
     </Tab.Navigator>
   );
 }

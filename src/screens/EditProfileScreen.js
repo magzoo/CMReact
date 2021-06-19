@@ -1,6 +1,4 @@
 import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import React, {useState, useEffect, useContext} from 'react';
 import * as ImagePicker from 'react-native-image-picker';
 import auth from '@react-native-firebase/auth';
@@ -12,13 +10,10 @@ import {
   StyleSheet,
   Text,
   Button,
-  SafeAreaView,
-  ScrollView,
   Image,
   TouchableOpacity,
-  ImageBackground,
   TextInput,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
 
 const EditProfileScreen = props => {
@@ -90,58 +85,17 @@ const EditProfileScreen = props => {
     }
   }
 
-  
   var displayemail = email;
   var displayname = displayName;
-  var imagesource = photoURL;
+
   return (
     <View style={styles.container}>
       <View style={{margin: 20}}>
-        <View style={{alignItems: 'center'}}>
-          <TouchableOpacity onPress={imageGalleryLaunch}>
-            <View
-              style={{
-                height: 100,
-                width: 100,
-                borderRadius: 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <ImageBackground
-                source={{
-                  uri: resourcePath
-                    ? 'https://firebasestorage.googleapis.com/v0/b/cmtp2-342a4.appspot.com/o/her.jpg?alt=media&token=a164bc77-e4e9-427f-95c9-8b2704c8c937'
-                    : 'https://firebasestorage.googleapis.com/v0/b/cmtp2-342a4.appspot.com/o/her.jpg?alt=media&token=a164bc77-e4e9-427f-95c9-8b2704c8c937',
-                }}
-                style={{height: 100, width: 100}}
-                imageStyle={{borderRadius: 50}}>
-                <ImageBackground
-                  source={{uri: resourcePath}}
-                  style={{height: 100, width: 100}}
-                  imageStyle={{borderRadius: 50}}>
-                  <View></View>
-                  <View>
-                    <Image
-                      source={require('../Images/camera.png')}
-                      size={35}
-                      style={{
-                        height: 30,
-                        width: 30,
-                        opacity: 0.7,
-                        alignItems: 'center',
-                        marginLeft: 3,
-                        marginTop: 12,
-                      }}
-                    />
-                  </View>
-                </ImageBackground>
-              </ImageBackground>
-            </View>
-          </TouchableOpacity>
-          <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
-            {user && user?.name}{' '}
-          </Text>
-        </View>
+      <Image
+            source={require('../../Assets/images/profile.png')}
+            size={35}
+            style={styles.image}
+          />
         <View style={styles.action}>
           <Image
             source={require('../Images/nome.png')}
@@ -189,7 +143,7 @@ const EditProfileScreen = props => {
             placeholder="Antiga Password"
             placeholderTextColor="#6666666"
             autoCorrect={false}
-            secureTextEntry = {true}
+            secureTextEntry={true}
             onChangeText={value => setOldPassword(value)}
             style={styles.textInput}
           />
@@ -207,7 +161,7 @@ const EditProfileScreen = props => {
             placeholder="Nova Password"
             placeholderTextColor="#6666666"
             autoCorrect={false}
-            secureTextEntry = {true}
+            secureTextEntry={true}
             onChangeText={value => setNewPassword(value)}
             style={styles.textInput}
           />
@@ -225,7 +179,7 @@ const EditProfileScreen = props => {
             placeholder="Nova Password"
             placeholderTextColor="#6666666"
             autoCorrect={false}
-            secureTextEntry = {true}
+            secureTextEntry={true}
             onChangeText={value => setNewPassword2(value)}
             style={styles.textInput}
           />
@@ -245,42 +199,64 @@ const EditProfileScreen = props => {
                       name: uname,
                     });
                   });
-                  auth().currentUser.updateProfile({displayName: uname});
-                  bool = true;
+                auth().currentUser.updateProfile({displayName: uname});
+                bool = true;
               }
               let bool = false;
-              if(newpassword != '' && olddPassword != ''){
-                if(newpassword == newpassword2){
+              if (newpassword != '' && olddPassword != '') {
+                if (newpassword == newpassword2) {
                   let user = auth().currentUser;
-                  let cred = auth.EmailAuthProvider.credential(email, olddPassword);
+                  let cred = auth.EmailAuthProvider.credential(
+                    email,
+                    olddPassword,
+                  );
                   user.reauthenticateWithCredential(cred);
-                  user.updatePassword(newpassword).then(function () {
-                    firestore()
-                      .collection('Users')
-                      .where('email', '==', email)
-                      .get()
-                      .then(querySnapShot => {
-                        querySnapShot.docs[0].ref.update({
-                          password: newpassword,
+                  user
+                    .updatePassword(newpassword)
+                    .then(function () {
+                      firestore()
+                        .collection('Users')
+                        .where('email', '==', email)
+                        .get()
+                        .then(querySnapShot => {
+                          querySnapShot.docs[0].ref.update({
+                            password: newpassword,
+                          });
                         });
-                      });
                       bool = true;
-                  }). catch(function(error){
-                    bool = false;
-                    Alert.alert(error.message);
-                  });
-
-                }else{
-                  ToastAndroid.show("Passwords não coicidem", 3);
+                    })
+                    .catch(function (error) {
+                      bool = false;
+                      Alert.alert(error.message);
+                    });
+                } else {
+                  ToastAndroid.show('Passwords não coicidem', 3);
                 }
               }
-              if(bool){
-                ToastAndroid.show("Perfil Atualizado", 3);
-                RootNavigation.navigate("ProfileScreen");
+              if (bool) {
+                ToastAndroid.show('Perfil Atualizado', 3);
               }
-              
             }}
           />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.userBtnWrapper}>
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={() => {
+            auth().signOut();
+            RootNavigation.navigate('Login');
+          }}>
+          <Text style={styles.userBtnTxt}>Logout</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={() => {
+            auth().currentUser.delete();
+            RootNavigation.navigate('Login');
+          }}>
+          <Text style={styles.userBtnTxt}>Eliminar Conta</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -290,6 +266,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  image:{
+    width: 100,
+    height: 100,
+    alignSelf: "center",
+    paddingHorizontal: 30
   },
   commandButton: {
     padding: 15,
@@ -366,6 +348,67 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
     color: '#333333',
+  },
+
+  userImg: {
+    height: 150,
+    width: 150,
+    borderRadius: 75,
+  },
+  userName: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginTop: 14,
+  },
+  userEmail: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 14,
+  },
+  aboutUser: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  userBtnWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: 10,
+  },
+  userBtn: {
+    borderColor: '#2e64e5',
+    borderWidth: 2,
+    borderRadius: 3,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    marginHorizontal: 5,
+    marginTop: 14,
+  },
+  userBtnTxt: {
+    color: '#2e64e5',
+  },
+  userInfoWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginVertical: 20,
+  },
+  userInfoItem: {
+    justifyContent: 'center',
+  },
+  userInfoTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  userInfoSubTitle: {
+    fontSize: 12,
+    color: '#666',
+    textAlign: 'center',
   },
 });
 

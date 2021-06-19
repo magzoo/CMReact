@@ -15,7 +15,6 @@ function MyStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ProfileScreen" component={Profile}/>
       <Stack.Screen name="EditProfile" component={EditProfile} />
-      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 }

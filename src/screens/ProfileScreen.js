@@ -1,34 +1,17 @@
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+/*import 'react-native-gesture-handler';
 import React, {useState,useEffect,useContext}from 'react';
 import {View, StyleSheet,Text, Button,SafeAreaView,ScrollView,Image, TouchableOpacity} from 'react-native';
-import { Tab } from 'react-native-elements';
-import {Avatar, Title, TouchableRipple} from 'react-native-paper';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import * as RootNavigation from '../Navigation/RootNavigation'
 import auth from '@react-native-firebase/auth';
-import { RootTagContext } from 'react-native/Libraries/ReactNative/RootTag';
 export default class ProfileScreen extends React.Component{
   state = {
     email:null,
     displayName :null,
 }
   render(){
-      const {email, displayName} = auth().currentUser;
-      this.state.email = email;
-      this.state.displayName = displayName;
         return(
-            <SafeAreaView style={{flex:1, backgroundColor:'#ffff'}}>
-              <ScrollView style={styles.container} 
-              contentContainerStyle={{justifyContent:'center', alignItems:'center'}}
-              showsVerticalScrollIndicator={false}>
-              <Image style={styles.userImg} source={require ('../Images/her.jpg',)}/>
-              <Text style={styles.userName}>{this.state.displayName} </Text>
+            
               <View style={styles.userBtnWrapper}>
-                <TouchableOpacity style={styles.userBtn} onPress={()=> {RootNavigation.navigate("EditProfile")}}>
-                  <Text style={styles.userBtnTxt}>Editar Perfil</Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.userBtn} onPress={()=>{  auth().signOut();
                       RootNavigation.navigate("Login")}}>
                   <Text style={styles.userBtnTxt}>Logout</Text> 
@@ -43,9 +26,6 @@ export default class ProfileScreen extends React.Component{
                   <Text style={styles.userBtnTxt}>Eliminar Conta</Text>
                 </TouchableOpacity>
               </View>
-              </ScrollView>
-            
-            </SafeAreaView>
             
       );
   
@@ -121,4 +101,4 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-});
+});*/
