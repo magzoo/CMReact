@@ -15,7 +15,8 @@ function RegisterScreen(props){
         firestore().collection('Users').add({
             "name": name,
             "email": email,
-            "password":password
+            "password":password,
+            "userimage":null
         });
 
         firestore().collection('Schedules').add({

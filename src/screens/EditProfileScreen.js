@@ -5,10 +5,14 @@ import React, {useState,useEffect,useContext}from 'react';
 import { Icon } from 'react-native-elements'
 import {View, StyleSheet,Text, Button,SafeAreaView,ScrollView,Image, TouchableOpacity,ImageBackground,TextInput} from 'react-native';
 import * as ImagePicker from "react-native-image-picker";
+import auth from '@react-native-firebase/auth';
+import PasswordInputText from 'react-native-hide-show-password-input';
 export default class EditProfile extends React.Component{
 	state = {
     resourcePath:null,
     res:null,
+    email:null,
+    displayName :null,
 }
   imageGalleryLaunch = () => {
     let options = {
@@ -34,7 +38,28 @@ export default class EditProfile extends React.Component{
     });
   }  
   render(){
-    console.log('this.state.resourcePath', JSON.stringify(this.state.resourcePath));
+    const {email, displayName, password} = auth().currentUser;
+    this.state.email = email;
+    this.state.displayName = displayName;
+    const [userData, setUserData] = useState(null);
+
+  const getUser = async() => {
+    const currentUser = await firestore()
+    .collection('Users')
+    .doc(user.uid)
+    .get()
+    .then((documentSnapshot) => {
+      if( documentSnapshot.exists ) {
+        console.log('User Data', documentSnapshot.data());
+        setUserData(documentSnapshot.data());
+      }
+    })
+  }
+  useEffect(() => {
+    getUser();
+  }, []);
+
+    console.log('this.state.password', password);
       return(
           <View style={styles.container}>
               <View style={{margin:20}}>
@@ -73,14 +98,14 @@ export default class EditProfile extends React.Component{
                       </ImageBackground>
                     </View>
                   </TouchableOpacity>
-                  <Text style={{marginTop:10,fontSize:18,fontWeight:'bold'}}>Cabrita</Text>
+                  <Text style={{marginTop:10,fontSize:18,fontWeight:'bold'}}>{this.state.displayName} </Text>
                 </View>
                 <View style={styles.action}>
                 <Image source={require ('../Images/nome.png',)} size={35} style={{
                                 height:20,width:20,
                               }}/>
                   <TextInput
-                      placeholder='Nome'
+                      placeholder={this.state.displayName} 
                       placeholderTextColor='#6666666'
                       autoCorrect={false}
                       style={styles.textInput}
@@ -94,7 +119,7 @@ export default class EditProfile extends React.Component{
                                 height:20,width:20,
                               }}/>
                   <TextInput
-                      placeholder='Email'
+                      placeholder={this.state.email} 
                       placeholderTextColor='#6666666'
                       autoCorrect={false}
                       style={styles.textInput}
@@ -106,12 +131,24 @@ export default class EditProfile extends React.Component{
                                 height:20,width:20,
                               }}/>
                   <TextInput
-                      placeholder='Password'
+                      placeholder="Antiga Password"
                       placeholderTextColor='#6666666'
                       autoCorrect={false}
                       style={styles.textInput}
                   />
-
+                 
+                </View>
+                <View style={styles.action}>
+                <Image source={require ('../Images/pass.png',)} size={35} style={{
+                                height:20,width:20,
+                              }}/>
+                  <TextInput
+                      placeholder="Nova Password"
+                      placeholderTextColor='#6666666'
+                      autoCorrect={false}
+                      style={styles.textInput}
+                  />
+                 
                 </View>
                 <TouchableOpacity onPress={()=> {}}>
                   <Button

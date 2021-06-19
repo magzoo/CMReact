@@ -10,18 +10,21 @@ import * as RootNavigation from '../Navigation/RootNavigation'
 import auth from '@react-native-firebase/auth';
 import { RootTagContext } from 'react-native/Libraries/ReactNative/RootTag';
 export default class ProfileScreen extends React.Component{
+  state = {
+    email:null,
+    displayName :null,
+}
   render(){
     const {email, displayName} = auth().currentUser;
-    state.email = email;
-    state.displayName = displayName;
-    console.log(state);
+    this.state.email = email;
+    this.state.displayName = displayName;
       return(
           <SafeAreaView style={{flex:1, backgroundColor:'#ffff'}}>
             <ScrollView style={styles.container} 
             contentContainerStyle={{justifyContent:'center', alignItems:'center'}}
             showsVerticalScrollIndicator={false}>
             <Image style={styles.userImg} source={require ('../Images/her.jpg',)}/>
-            <Text style={styles.userName}>{state.displayName} </Text>
+            <Text style={styles.userName}>{this.state.displayName} </Text>
             <View style={styles.userBtnWrapper}>
               <TouchableOpacity style={styles.userBtn} onPress={()=> {RootNavigation.navigate("EditProfile")}}>
                 <Text style={styles.userBtnTxt}>Editar Perfil</Text>
