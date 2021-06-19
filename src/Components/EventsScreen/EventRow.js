@@ -54,7 +54,7 @@ const EventListRow = (props) =>{
                                     setChosenEvent(selectedEvent);
                                     }}>
                                         <View style={styles.nameHour}>
-                                            <Text style={styles.textMarginLeft}>Nome :{userData.name}</Text>
+                                            <Text style={styles.textMarginLeft}>Nome: {userData.name}</Text>
                                             <Text style={styles.textMarginRight}>Horas: {userData.time}</Text>
                                         </View>
                                         <Text style={styles.textMarginLeft}>Descrição: {userData.description}</Text>

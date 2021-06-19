@@ -141,13 +141,10 @@ const EditEvent = (props) =>{
         )
     }
 
-
     const styles = StyleSheet.create({
       buttonsContainer : {
           flexDirection: 'row',
-          justifyContent: 'space-between',
-          
-          
+          justifyContent: 'space-between'
       },
 
       timeButtonContainer:{

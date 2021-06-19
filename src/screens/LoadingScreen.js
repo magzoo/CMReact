@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, ImageBackground } from 'react-native';
 import auth from '@react-native-firebase/auth'
+import splash from '../../Assets/images/splash2.png'
 
 export default class LoadingScreen extends React.Component{
     componentDidMount(){
@@ -11,18 +12,21 @@ export default class LoadingScreen extends React.Component{
 
     render(){
         return(
-            <View style = {styles.container}>
-                <Text>Loading...</Text>
+            <ImageBackground style = {styles.container} source = {require('../../Assets/images/splash2.png')} >
                 <ActivityIndicator size = "large"></ActivityIndicator>
-            </View>
+            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {   
+    container: {
         flex: 1,
-        justifyContent: "center",
+        position: 'relative',
+        resizeMode: 'cover'
+    },
+    load: {
+        paddingBottom: "20%",
         alignItems: "center"
-    }
+    },
 });

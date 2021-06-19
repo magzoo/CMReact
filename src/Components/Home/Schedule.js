@@ -19,6 +19,19 @@ LocaleConfig.locales['pt'] = {
 };
 LocaleConfig.defaultLocale = 'pt';
 
+
+var selectedType = "";
+
+const setSelectedType = (type) =>{
+  selectedType = type;
+}
+
+export const getSelectedType = () =>{
+  return selectedType;
+}
+
+
+
 const Schedule = () =>{
   const[types,setTypes] = useState([]);
   const[events,setEvents] = useState([]);
@@ -64,6 +77,7 @@ const Schedule = () =>{
             });
             setMark(mark2);
             setValue(value);
+            setSelectedType(types[value]);
           }}>
               {
               types.map((item,index) => {
@@ -81,7 +95,7 @@ const Schedule = () =>{
             pastScrollRange={0}
             // Max amount of months allowed to scroll to the future. Default = 50
             futureScrollRange={0}
-            onDayPress={(day) => {RootNavigation.navigate('EventosLista',{day: day, schedule: types[value], events: events})}}
+            onDayPress={(day) => {RootNavigation.navigate('EventosLista',{day: day, schedule: types[value]})}}
             hideArrows={false}
   
             markedDates={ mark }

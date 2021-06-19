@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       buttonContainer: {
-        marginTop: 40,
+        marginTop: 20,
+        marginBottom: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
       },
@@ -72,7 +73,28 @@ const styles = StyleSheet.create({
       backButtonTitle:{
         fontSize: 18,
         marginTop: 18,
-      }
+      },
+      buttonShare: {
+        marginTop: 10,
+        width: '60%',
+        alignItems: "center"
+      },
+      textInput: {
+        borderBottomColor: "#8A8F9E",
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        height: 40,
+        fontSize: 15,
+        color: "#161F3D",
+        width: "70%",
+        alignSelf: "center"
+          
+      },
+      
+      textInputTitle: {
+        marginTop: 10,
+        fontSize: 15,
+        textAlign: 'center',
+      },
 });
 
 export default styles;

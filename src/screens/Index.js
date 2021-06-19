@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text} from "react-native";
+import {View, Text, ScrollView} from "react-native";
 import Buttons from '../Components/Home/Buttons'
 import Schedule from '../Components/Home/Schedule'
 import auth from '@react-native-firebase/auth'
@@ -10,13 +10,12 @@ class HomeScreen extends React.Component{
                 super(props);
         }
 
-
         render(){
                return(
-                <View>
-                <Schedule/>
-                <Buttons/>
-                </View>   
+                <ScrollView>
+                        <Schedule/>
+                        <Buttons/>
+                </ScrollView>   
                ) 
         }
 }
