@@ -1,110 +1,291 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import React, {useState,useEffect,useContext}from 'react';
-import { Icon } from 'react-native-elements'
-import {View, StyleSheet,Text, Button,SafeAreaView,
-  ScrollView,Image, TouchableOpacity,ImageBackground,TextInput,opacity} from 'react-native';
-import Animated from 'react-native-reanimated';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import React, {useState, useEffect, useContext} from 'react';
+import * as ImagePicker from 'react-native-image-picker';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import * as RootNavigation from '../Navigation/RootNavigation';
+import {
+  Alert,
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+  TextInput,
+  ToastAndroid
+} from 'react-native';
 
+const EditProfileScreen = props => {
+  const [resourcePath, setResourcePath] = useState(null);
+  const [res, setRes] = useState(null);
+  const [uname, setUName] = useState('');
+  const [uemail, setUEmail] = useState('');
+  const [olddPassword, setOldPassword] = useState('');
+  const [newpassword, setNewPassword] = useState('');
+  const [newpassword2, setNewPassword2] = useState('');
+  const [userimage, setUserImage] = useState('');
+  const [user, setUser] = useState();
+  const {email, displayName, photoURL, password} = auth().currentUser;
 
-export default class EditProfile extends React.Component{
-  constructor(props){
-    super(props)
-    const [response, setResponse] = useState(null);
+  function imageGalleryLaunch() {
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.launchImageLibrary(options, res => {
+      console.log('Response = ', res);
 
-    const onButtonPress = React.useCallback((type, options) => {
-      if (type === 'capture') {
-        ImagePicker.launchCamera(options, setResponse);
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
       } else {
-        ImagePicker.launchImageLibrary(options, setResponse);
+        console.log('response', JSON.stringify(res));
+        setResourcePath(res.assets[0].uri);
       }
-    }, []);
-
+    });
   }
-  render(){
-      return(
-          <View style={styles.container}>
-              <View style={{margin:20}}>
-                <View style={{alignItems:'center'}}>
-                  <TouchableOpacity onPress={()=>{}}>
-                    <View style={{height:100,width:100,borderRadius:15,
-                      justifyContent:'center',alignItems:'center'}}>
+  const getUser = async () => {
+    try {
+      const documentSnapshot = await firestore()
+        .collection('Users')
+        .doc(uid)
+        .get();
 
-                      <ImageBackground 
-                        source={require ('../Images/her.jpg',)}
-                        style={{height:100,width:100}}
-                        imageStyle={{borderRadius:50}}
-                      >
-                          <View>
-                              <Image source={require ('../Images/camera.png',)} size={35} style={{
-                                height:30,width:30,
-                                opacity:0.7,
-                                alignItems:'center',
-                                marginLeft:3,
-                                marginTop:12,
-
-                              }}/>
-                          </View>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                  <Text style={{marginTop:10,fontSize:18,fontWeight:'bold'}}>Cabrita</Text>
-                </View>
-                <View style={styles.action}>
-                <Image source={require ('../Images/nome.png',)} size={35} style={{
-                                height:20,width:20,
-                              }}/>
-                  <TextInput
-                      placeholder='Nome'
-                      placeholderTextColor='#6666666'
-                      autoCorrect={false}
-                      style={styles.textInput}
-                  />
-
-                </View>
-                <View style={styles.action}>
-                  
-               
-                <Image source={require ('../Images/email.png',)} size={35} style={{
-                                height:20,width:20,
-                              }}/>
-                  <TextInput
-                      placeholder='Email'
-                      placeholderTextColor='#6666666'
-                      autoCorrect={false}
-                      style={styles.textInput}
-                  />
-
-                </View>
-                <View style={styles.action}>
-                <Image source={require ('../Images/pass.png',)} size={35} style={{
-                                height:20,width:20,
-                              }}/>
-                  <TextInput
-                      placeholder='Password'
-                      placeholderTextColor='#6666666'
-                      autoCorrect={false}
-                      style={styles.textInput}
-                  />
-
-                </View>
-                <TouchableOpacity onPress={()=> {}}>
-                  <Button
-                      title="Atualizar"
-                      color="#669BF7"
-                      onPress={()=> {}}
-                  />
-                </TouchableOpacity>
-
-              </View>
-          </View>
-          
-    );
+      const userData = documentSnapshot.data();
+      setUser(userData);
+    } catch {
+      //do whatever
+    }
   };
-  
-}
 
+  // Get user on mount
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  function handleUpdate() {
+    if (uname != '') {
+      firestore()
+        .collection('Users')
+        .where('email', '==', uemail)
+        .get()
+        .then(querySnapShot => {
+          querySnapShot.docs[0].ref.update({
+            name: uname,
+          });
+        });
+      Alert.alert('Perfil Atualizado Com Sucesso!');
+    }
+  }
+
+  
+  var displayemail = email;
+  var displayname = displayName;
+  var imagesource = photoURL;
+  return (
+    <View style={styles.container}>
+      <View style={{margin: 20}}>
+        <View style={{alignItems: 'center'}}>
+          <TouchableOpacity onPress={imageGalleryLaunch}>
+            <View
+              style={{
+                height: 100,
+                width: 100,
+                borderRadius: 15,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <ImageBackground
+                source={{
+                  uri: resourcePath
+                    ? 'https://firebasestorage.googleapis.com/v0/b/cmtp2-342a4.appspot.com/o/her.jpg?alt=media&token=a164bc77-e4e9-427f-95c9-8b2704c8c937'
+                    : 'https://firebasestorage.googleapis.com/v0/b/cmtp2-342a4.appspot.com/o/her.jpg?alt=media&token=a164bc77-e4e9-427f-95c9-8b2704c8c937',
+                }}
+                style={{height: 100, width: 100}}
+                imageStyle={{borderRadius: 50}}>
+                <ImageBackground
+                  source={{uri: resourcePath}}
+                  style={{height: 100, width: 100}}
+                  imageStyle={{borderRadius: 50}}>
+                  <View></View>
+                  <View>
+                    <Image
+                      source={require('../Images/camera.png')}
+                      size={35}
+                      style={{
+                        height: 30,
+                        width: 30,
+                        opacity: 0.7,
+                        alignItems: 'center',
+                        marginLeft: 3,
+                        marginTop: 12,
+                      }}
+                    />
+                  </View>
+                </ImageBackground>
+              </ImageBackground>
+            </View>
+          </TouchableOpacity>
+          <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
+            {user && user?.name}{' '}
+          </Text>
+        </View>
+        <View style={styles.action}>
+          <Image
+            source={require('../Images/nome.png')}
+            size={35}
+            style={{
+              height: 20,
+              width: 20,
+            }}
+          />
+          <TextInput
+            placeholder={displayname}
+            placeholderTextColor="#6666666"
+            autoCorrect={false}
+            onChangeText={value => setUName(value)}
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+          <Image
+            source={require('../Images/email.png')}
+            size={35}
+            style={{
+              height: 20,
+              width: 20,
+            }}
+          />
+          <TextInput
+            placeholder={displayemail}
+            placeholderTextColor="#6666666"
+            autoCorrect={false}
+            onChangeText={value => setUEmail(value)}
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+          <Image
+            source={require('../Images/pass.png')}
+            size={35}
+            style={{
+              height: 20,
+              width: 20,
+            }}
+          />
+          <TextInput
+            placeholder="Antiga Password"
+            placeholderTextColor="#6666666"
+            autoCorrect={false}
+            secureTextEntry = {true}
+            onChangeText={value => setOldPassword(value)}
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+          <Image
+            source={require('../Images/pass.png')}
+            size={35}
+            style={{
+              height: 20,
+              width: 20,
+            }}
+          />
+          <TextInput
+            placeholder="Nova Password"
+            placeholderTextColor="#6666666"
+            autoCorrect={false}
+            secureTextEntry = {true}
+            onChangeText={value => setNewPassword(value)}
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+          <Image
+            source={require('../Images/pass.png')}
+            size={35}
+            style={{
+              height: 20,
+              width: 20,
+            }}
+          />
+          <TextInput
+            placeholder="Nova Password"
+            placeholderTextColor="#6666666"
+            autoCorrect={false}
+            secureTextEntry = {true}
+            onChangeText={value => setNewPassword2(value)}
+            style={styles.textInput}
+          />
+        </View>
+        <TouchableOpacity>
+          <Button
+            title="Atualizar"
+            color="#669BF7"
+            onPress={() => {
+              if (uname != '') {
+                firestore()
+                  .collection('Users')
+                  .where('email', '==', uemail)
+                  .get()
+                  .then(querySnapShot => {
+                    querySnapShot.docs[0].ref.update({
+                      name: uname,
+                    });
+                  });
+                  auth().currentUser.updateProfile({displayName: uname});
+                  bool = true;
+              }
+              let bool = false;
+              if(newpassword != '' && olddPassword != ''){
+                if(newpassword == newpassword2){
+                  let user = auth().currentUser;
+                  let cred = auth.EmailAuthProvider.credential(email, olddPassword);
+                  user.reauthenticateWithCredential(cred);
+                  user.updatePassword(newpassword).then(function () {
+                    firestore()
+                      .collection('Users')
+                      .where('email', '==', email)
+                      .get()
+                      .then(querySnapShot => {
+                        querySnapShot.docs[0].ref.update({
+                          password: newpassword,
+                        });
+                      });
+                      bool = true;
+                  }). catch(function(error){
+                    bool = false;
+                    Alert.alert(error.message);
+                  });
+
+                }else{
+                  ToastAndroid.show("Passwords não coicidem", 3);
+                }
+              }
+              if(bool){
+                ToastAndroid.show("Perfil Atualizado", 3);
+                RootNavigation.navigate("ProfileScreen");
+              }
+              
+            }}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -188,4 +369,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
+export default EditProfileScreen;

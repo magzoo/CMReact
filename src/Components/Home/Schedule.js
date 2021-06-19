@@ -37,7 +37,10 @@ const Schedule = () =>{
   const[events,setEvents] = useState([]);
   const[mark,setMark] = useState([{}]);
   const[value,setValue] = useState(0);
-  const {email, displayName} = auth().currentUser;
+  if(auth().currentUser){
+    const {email, displayName} = auth().currentUser;
+  
+    
 
       firestore()
       .collection("Schedules")
@@ -104,7 +107,13 @@ const Schedule = () =>{
         </View>
   
       )
-
+  }else{
+    return (
+      <View>
+        <Text> ;)</Text>
+      </View>
+    )
+  }
 
 }
 

@@ -9,6 +9,7 @@ import styles from './Styles'
 
 
 const Buttons = () => {
+    if(auth().currentUser){
     const[value,setValue] = useState("");
     const {email, displayName} = auth().currentUser;
     const type = getSelectedType();
@@ -29,7 +30,6 @@ const Buttons = () => {
             if( parEmail != ""){
                 let found = false;
                 var BreakException = {};
-                let parEmailEvents = [];
                 firestore().collection("Events").where("userEmail", "==", parEmail);
                 try{
                     emailList.forEach(element => {
@@ -69,17 +69,19 @@ const Buttons = () => {
       
     return (
         <View>
-            <View style={styles.buttonContainer}>
-                <View style={styles.buttonViewLeft}>
-                    <Button title="Adicionar" onPress={()=>{ RootNavigation.navigate("AddSchedule")}}/>
+            <View style = {{margin: 10}}>
+                <View style={styles.buttonContainer}>
+                    <View style={styles.buttonViewLeft}>
+                        <Button title="Adicionar" onPress={()=>{ RootNavigation.navigate("AddSchedule")}}/>
+                    </View>
+                    <View style={styles.buttonView}>
+                        <Button title="Remover" onPress={()=>{ RootNavigation.navigate("RemoveSchedule")}}/>
+                    </View>
+                    <View style={styles.buttonViewRight}>
+                        <Button title="Editar" onPress={()=>{ RootNavigation.navigate("EditSchedule")}}/>
+                    </View>
+                    
                 </View>
-                <View style={styles.buttonView}>
-                    <Button title="Remover" onPress={()=>{ RootNavigation.navigate("RemoveSchedule")}}/>
-                </View>
-                <View style={styles.buttonViewRight}>
-                    <Button title="Editar" onPress={()=>{ RootNavigation.navigate("EditSchedule")}}/>
-                </View>
-                
             </View>
             <View style = {{margin: 10}}>
                 <Text style={styles.textInputTitle}>Insira o email de um Utilizador:</Text>
@@ -90,6 +92,13 @@ const Buttons = () => {
             </View>
         </View>
     );
+}else{
+    return (
+      <View>
+        <Text> ;)</Text>
+      </View>
+    )
+  }
 };
 
 export default Buttons;

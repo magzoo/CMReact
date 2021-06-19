@@ -1,5 +1,6 @@
 import * as React from "react";
 import {View, ScrollView} from "react-native";
+import auth from '@react-native-firebase/auth'
 
 
 
@@ -8,6 +9,9 @@ import EventList from '../Components/EventsScreen/ListOfEvents';
 
 
 const EventScreen = (props) =>{
+    if(auth().currentUser){
+
+    
     var selectedDay = {
         "dateString": "Selecione um dia"
      };
@@ -25,6 +29,13 @@ const EventScreen = (props) =>{
             </ScrollView>
         </View>
     );
+    }else{
+        return (
+          <View>
+            <Text> ;)</Text>
+          </View>
+        )
+      }
 };
 
 export default EventScreen;
