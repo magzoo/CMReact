@@ -7,7 +7,6 @@ import auth from '@react-native-firebase/auth';
 import Index from './Index';
 import EventNavigator from '../Navigation/EventNavigator';
 import HomeNavigator from '../Navigation/HomeNavigator'
-import Profile from '../Navigation/ProfileNavigator'
 import editprofile from './EditProfileScreen'
 
 function SettingsScreen() {

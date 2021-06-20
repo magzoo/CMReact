@@ -1,5 +1,4 @@
 import * as React from "react";
-import {View, ScrollView} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 
 
@@ -8,8 +7,6 @@ import NavBar from '../screens/NavBar';
 import LoginScreen from '../screens/LoginScreen';
 import LoadingScreen from "../screens/LoadingScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import EditProfileScreen from "../screens/EditProfileScreen";
 
 
 const Stack = createStackNavigator();
