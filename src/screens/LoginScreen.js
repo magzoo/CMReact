@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth'
+import {Image} from 'react-native' 
+import { Dimensions } from 'react-native'
 
 export default class LoadingScreen extends React.Component{
     state = {
@@ -18,7 +20,9 @@ export default class LoadingScreen extends React.Component{
 
     render(){
         return(
-            <View style={styles.container}>
+            
+            <View style={styles.container} paddingBottom={20}>
+                <Image style = {styles.image} source={require('../Images/ICON.png')}/>
                 <View style = {styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
@@ -95,12 +99,13 @@ const styles = StyleSheet.create({
     },
     inputTitle: {
         color: "#8A8F9E",
-        height: 40,
+        height: 30,
         fontSize: 15,
         color: "#161F3D",
         textAlign: 'center'
     },
     button: {
+        marginTop: 30,
         marginHorizontal: 30,
         backgroundColor: "#33BDFF",
         borderRadius: 4,
@@ -112,6 +117,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor:'#33BDFF',
         marginBottom: 5,
-        textAlign: 'center'
+        textAlign: 'center',
+        width: 150
+    },
+    image: {
+        resizeMode: 'contain',
+        width: 300, 
+        height: 100,
     },
 });

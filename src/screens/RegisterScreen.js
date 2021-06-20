@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
+import {Image} from 'react-native' 
 
 
 function RegisterScreen(props){
@@ -40,7 +41,8 @@ function RegisterScreen(props){
     }
 
         return(
-            <View style={styles.container}>
+            <View style={styles.container} paddingBottom={20}>
+                <Image style = {styles.image} source={require('../Images/ICON.png')}/>
                 <View style = {styles.errorMessage}>
                     {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
                 </View>
@@ -57,7 +59,7 @@ function RegisterScreen(props){
                     </View>
                 </View>
 
-                <View style = {{marginTop: 32}}>
+                <View style = {{}}>
                     <View>
                         <Text style={styles.inputTitle}>Email</Text>
                         <TextInput 
@@ -125,12 +127,13 @@ const styles = StyleSheet.create({
     },
     inputTitle: {
         color: "#8A8F9E",
-        height: 40,
+        height: 20,
         fontSize: 15,
         color: "#161F3D",
         textAlign: 'center'
     },
     button: {
+        marginTop: 30,
         marginHorizontal: 30,
         backgroundColor: "#33BDFF",
         borderRadius: 4,
@@ -141,8 +144,14 @@ const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 1,
         borderBottomColor:'#33BDFF',
-        marginBottom: 5,
-        textAlign: 'center'
+        marginBottom: 0,
+        textAlign: 'center',
+        width: 150
+    },
+    image: {
+        resizeMode: 'contain',
+        width: 300, 
+        height: 100,
     },
 });
 

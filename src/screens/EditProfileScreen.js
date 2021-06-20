@@ -107,7 +107,7 @@ const EditProfileScreen = props => {
           />
           <TextInput
             placeholder={displayname}
-            placeholderTextColor="#6666666"
+            placeholderTextColor="#666666"
             autoCorrect={false}
             onChangeText={value => setUName(value)}
             style={styles.textInput}
@@ -124,7 +124,7 @@ const EditProfileScreen = props => {
           />
           <TextInput
             placeholder={displayemail}
-            placeholderTextColor="#6666666"
+            placeholderTextColor="#666666"
             autoCorrect={false}
             onChangeText={value => setUEmail(value)}
             style={styles.textInput}
@@ -141,7 +141,7 @@ const EditProfileScreen = props => {
           />
           <TextInput
             placeholder="Antiga Password"
-            placeholderTextColor="#6666666"
+            placeholderTextColor="#666666"
             autoCorrect={false}
             secureTextEntry={true}
             onChangeText={value => setOldPassword(value)}
@@ -159,7 +159,7 @@ const EditProfileScreen = props => {
           />
           <TextInput
             placeholder="Nova Password"
-            placeholderTextColor="#6666666"
+            placeholderTextColor="#666666"
             autoCorrect={false}
             secureTextEntry={true}
             onChangeText={value => setNewPassword(value)}
@@ -177,7 +177,7 @@ const EditProfileScreen = props => {
           />
           <TextInput
             placeholder="Nova Password"
-            placeholderTextColor="#6666666"
+            placeholderTextColor="#666666"
             autoCorrect={false}
             secureTextEntry={true}
             onChangeText={value => setNewPassword2(value)}
