@@ -136,14 +136,14 @@ const AddEvent = (props) =>{
 
     const styles = StyleSheet.create({
       buttonsContainer : {
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          
-          
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+        marginBottom: 10,
       },
 
       timeButtonContainer:{
-        marginTop: 5,
+        marginTop: 20,
         alignItems: 'center'
       },
 
@@ -157,13 +157,15 @@ const AddEvent = (props) =>{
       },  
       buttonContainerLeft: {
           width: '30%',
-          marginLeft: 10,
-          marginTop: 50
+          marginRight: 10,
+          marginTop: 20,
+          marginBottom: 10
       },
       buttonContainerRight: {
           width: '30%',
-          marginRight: 10,
-          marginTop: 50
+          marginLeft: 10,
+          marginTop: 20,
+          marginBottom: 10
       },
       title: {
           fontSize: 24,

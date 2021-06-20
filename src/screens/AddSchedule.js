@@ -34,19 +34,19 @@ const AddSchedule = () =>{
 const styles = StyleSheet.create({
     buttonsContainer : {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        
-        
+        justifyContent: 'center',
+        width: '100%',
+        marginBottom: 10,
     },
     buttonContainerLeft: {
         width: '30%',
-        marginLeft: 10,
-        marginTop: 50
+        marginRight: 10,
+        marginTop: 30
     },
     buttonContainerRight: {
         width: '30%',
-        marginRight: 10,
-        marginTop: 50
+        marginLeft: 10,
+        marginTop: 30
     },
     title: {
         fontSize: 24,
@@ -55,8 +55,11 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     textInput: {
-        textAlign:"center",
-        marginTop: 50
+        borderBottomWidth: 1,
+        borderBottomColor:'#33BDFF',
+        marginBottom: 0,
+        alignSelf: 'center',
+        width: 150
         
     }
 

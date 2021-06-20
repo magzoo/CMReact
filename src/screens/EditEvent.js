@@ -153,12 +153,15 @@ const EditEvent = (props) =>{
 
     const styles = StyleSheet.create({
       buttonsContainer : {
-          flexDirection: 'row',
-          justifyContent: 'space-between'
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+        marginBottom: 20,
       },
 
       timeButtonContainer:{
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 20,
       },
 
       timeButton: {
@@ -171,13 +174,13 @@ const EditEvent = (props) =>{
       },  
       buttonContainerLeft: {
           width: '30%',
-          marginLeft: 10,
-          marginTop: 50
+          marginRight: 10,
+          marginTop: 20
       },
       buttonContainerRight: {
           width: '30%',
-          marginRight: 10,
-          marginTop: 50
+          marginLeft: 10,
+          marginTop: 20
       },
       title: {
           fontSize: 24,
